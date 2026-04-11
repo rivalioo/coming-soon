@@ -231,7 +231,7 @@ const ComingSoon = () => {
     const socials = [
         { name: 'Youtube', icon: Youtube, url: 'https://www.youtube.com/channel/UCYD1KrGaXogqZ_ioliChP0g', tooltip: 'Go to our Youtube' },
         { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/mrzephyrlive', tooltip: 'Go to our Instagram' },
-        { name: 'Discord', icon: RxDiscordLogo, url: 'https://discord.gg/D5u5Ey682U', tooltip: 'Join the community server' },
+        { name: 'Discord', icon: RxDiscordLogo, url: 'https://discord.gg/yFH4sM5wVx', tooltip: 'Join the community server' },
         { name: 'Twitch', icon: Twitch, url: 'https://www.twitch.tv/mrzephyrlive', tooltip: 'Follow us on Twitch' }
     ];
 
@@ -377,7 +377,7 @@ const ComingSoon = () => {
 
                             {/* Discord Button (Mobile Compact) */}
                             <button
-                                onClick={() => openLink('https://discord.gg/D5u5Ey682U')}
+                                onClick={() => openLink('https://discord.gg/yFH4sM5wVx')}
                                 className="relative flex flex-row items-center justify-between px-3 py-3 bg-gradient-to-r from-[#5865F2]/15 to-[#5865F2]/10 border border-[#5865F2]/20 rounded-xl transition-all duration-300 active:scale-95"
                             >
                                 <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-[#5865F2] text-white shadow-lg shadow-[#5865F2]/30 overflow-hidden">
@@ -393,7 +393,7 @@ const ComingSoon = () => {
                         <div className="hidden lg:flex items-center gap-6 mt-4 hero-content opacity-0">
                             <div
                                 ref={discordBtnRef}
-                                onClick={() => openLink('https://discord.gg/D5u5Ey682U')}
+                                onClick={() => openLink('https://discord.gg/yFH4sM5wVx')}
                                 role="button"
                                 tabIndex={0}
                                 className="relative flex items-center justify-between gap-6 px-2 pr-6 py-2 bg-gradient-to-r from-[#5865F2]/10 to-[#5865F2]/5 border border-[#5865F2]/20 hover:border-[#5865F2]/50 hover:bg-[#5865F2]/15 rounded-[24px] transition-all duration-500 group w-full max-w-[320px] shadow-[0_4px_24px_-8px_rgba(88,101,242,0.2)] hover:shadow-[0_8px_32px_-8px_rgba(88,101,242,0.4)] cursor-pointer"
