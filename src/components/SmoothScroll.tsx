@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 import Lenis from "lenis";
 
 import "lenis/dist/lenis.css";
 
-export default function SmoothScroll({ children }: { children: any }) {
+export default function SmoothScroll({ children }: { children: ReactNode }) {
     useEffect(() => {
         const lenis = new Lenis({
             lerp: 0.08, // Smoother easing (lower = smoother but slightly more lag)

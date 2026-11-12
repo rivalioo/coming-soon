@@ -1,10 +1,12 @@
+/* eslint-disable react-refresh/only-export-components */
+
 import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type TransitionContextType = {
-    triggerTransition: (path: string, x: number, y: number, color?: string, state?: any, isExternal?: boolean) => void;
+    triggerTransition: (path: string, x: number, y: number, color?: string, state?: unknown, isExternal?: boolean) => void;
 };
 
 const TransitionContext = createContext<TransitionContextType | undefined>(undefined);
@@ -15,14 +17,14 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [color, setColor] = useState('#2FE9A9'); // Default brand green
     const [nextPath, setNextPath] = useState('');
-    const [navState, setNavState] = useState<any>(null);
+    const [navState, setNavState] = useState<unknown>(null);
     const [isExternalLink, setIsExternalLink] = useState(false);
 
-    const triggerTransition = (path: string, x: number, y: number, customColor?: string, state?: any, isExternal?: boolean) => {
+    const triggerTransition = (path: string, x: number, y: number, customColor?: string, state?: unknown, isExternal?: boolean) => {
         setPosition({ x, y });
         setNextPath(path);
         if (customColor) setColor(customColor);
-        if (state) setNavState(state);
+        if (state !== undefined) setNavState(state);
         setIsExternalLink(!!isExternal);
         setIsActive(true);
     };

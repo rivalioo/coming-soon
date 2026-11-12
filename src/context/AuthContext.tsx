@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+
 import React, { createContext, useContext, useState } from 'react';
 import { supabase } from '../lib/supabase';
 
@@ -5,6 +7,10 @@ interface User {
     id: string;
     email?: string;
     username?: string;
+}
+
+interface RegisteredUser extends User {
+    registered_at?: string;
 }
 
 interface AuthContextType {
@@ -44,7 +50,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             if (supabase) {
                 console.log('📝 Registering user with Supabase Auth (same table as main app)...');
 
-                // Check if username already exists in users table
                 // Check if username already exists in users table
                 const { data: existingUsername } = await supabase
                     .from('users')
@@ -90,39 +95,40 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
                 console.log('✅ User registered successfully in Supabase (users table)!');
                 return { success: true };
-            } else {
-                // Fallback to localStorage
-                console.log('📝 Registering user with localStorage (Supabase not configured)...');
-
-                const registeredUsers = JSON.parse(localStorage.getItem('rivalioo_registered_users') || '[]');
-
-                // Check duplicates
-                const emailExists = registeredUsers.some((u: any) =>
-                    userData.email && u.email.toLowerCase() === userData.email.toLowerCase()
-                );
-                if (emailExists) {
-                    return { success: false, error: 'email_exists' };
-                }
-
-                const usernameTaken = registeredUsers.some((u: any) =>
-                    userData.username && u.username.toLowerCase() === userData.username.toLowerCase()
-                );
-                if (usernameTaken) {
-                    return { success: false, error: 'username_taken' };
-                }
-
-                // Store in localStorage
-                localStorage.setItem('rivalioo_registered_users', JSON.stringify([
-                    ...registeredUsers,
-                    { ...userData, registered_at: new Date().toISOString() }
-                ]));
-
-                console.log('✅ User registered successfully in localStorage!');
-                return { success: true };
             }
-        } catch (error: any) {
+
+            // Fallback to localStorage
+            console.log('📝 Registering user with localStorage (Supabase not configured)...');
+
+            const registeredUsers: RegisteredUser[] = JSON.parse(localStorage.getItem('rivalioo_registered_users') || '[]');
+
+            // Check duplicates
+            const emailExists = registeredUsers.some((u) =>
+                userData.email && u.email?.toLowerCase() === userData.email.toLowerCase()
+            );
+            if (emailExists) {
+                return { success: false, error: 'email_exists' };
+            }
+
+            const usernameTaken = registeredUsers.some((u) =>
+                userData.username && u.username?.toLowerCase() === userData.username.toLowerCase()
+            );
+            if (usernameTaken) {
+                return { success: false, error: 'username_taken' };
+            }
+
+            // Store in localStorage
+            localStorage.setItem('rivalioo_registered_users', JSON.stringify([
+                ...registeredUsers,
+                { ...userData, registered_at: new Date().toISOString() }
+            ]));
+
+            console.log('✅ User registered successfully in localStorage!');
+            return { success: true };
+        } catch (error: unknown) {
             console.error('Registration error:', error);
-            return { success: false, error: error.message || 'Registration failed' };
+            const message = error instanceof Error ? error.message : 'Registration failed';
+            return { success: false, error: message };
         }
     };
 
