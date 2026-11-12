@@ -472,7 +472,7 @@ const ComingSoon = () => {
                                         onClick={() => openLink(social.url)}
                                         role="button"
                                         tabIndex={0}
-                                        className="group relative flex items-center justify-center h-12 lg:h-11 rounded-xl lg:rounded-full border transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden cursor-pointer
+                                        className="group relative flex items-center justify-center h-12 lg:h-11 rounded-xl lg:rounded-full border transition-all duration-500 ease-out overflow-hidden cursor-pointer
                                             w-12 bg-[#13161C]/50 border-white/10 text-gray-400
                                             hover:bg-[#2FE9A9]/10 hover:border-[#2FE9A9]/50 hover:text-[#2FE9A9]
                                             lg:w-11 lg:bg-[#13161C]/80 lg:border-white/5 lg:text-gray-400
@@ -482,7 +482,7 @@ const ComingSoon = () => {
                                             <social.icon size={20} className="transition-colors duration-500" />
                                         </div>
 
-                                        <div className="hidden lg:flex absolute right-0 top-0 h-full w-10 items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
+                                        <div className="hidden lg:flex absolute right-0 top-0 h-full w-10 items-center justify-center transition-all duration-500 ease-out
                                             opacity-0 group-hover:opacity-100">
                                             <ArrowRight size={16} className="-rotate-45" />
                                         </div>
